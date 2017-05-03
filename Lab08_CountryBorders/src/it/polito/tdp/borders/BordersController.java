@@ -5,6 +5,7 @@
 package it.polito.tdp.borders;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.borders.model.Model;
@@ -30,14 +31,19 @@ public class BordersController {
 	private TextArea txtResult; // Value injected by FXMLLoader
 
 	@FXML
-	void doCalcolaConfini(ActionEvent event) {
+	void doCalcolaConfini(ActionEvent event) throws NumberFormatException, SQLException {
 
-		txtResult.setText("Todo!");
+		txtResult.setText(model.createGraph(Integer.parseInt(txtAnno.getText())));
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 		assert txtAnno != null : "fx:id=\"txtAnno\" was not injected: check your FXML file 'Borders.fxml'.";
 		assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Borders.fxml'.";
+	}
+
+	public void setModel(Model model) {
+		this.model=model;
+		
 	}
 }
