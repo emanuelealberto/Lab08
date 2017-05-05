@@ -34,6 +34,7 @@ public class BordersController {
 	void doCalcolaConfini(ActionEvent event) throws NumberFormatException, SQLException {
 
 		txtResult.setText(model.createGraph(Integer.parseInt(txtAnno.getText())));
+		txtResult.setText(model.numeroStatiConfinanti());
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete

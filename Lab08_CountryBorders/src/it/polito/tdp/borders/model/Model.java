@@ -2,8 +2,10 @@ package it.polito.tdp.borders.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.jgrapht.Graphs;
 import org.jgrapht.UndirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
@@ -53,7 +55,21 @@ public class Model {
 	}
 
 	public List<Country> getCountries() {
-		// TODO Auto-generated method stub
+		
 		return countries;
+	}
+	public String numeroStatiConfinanti(){
+		String risultato="";
+		for (Country c : graph.vertexSet()){
+			risultato+=c.getStateAbb()+"\t";
+			List<Country> confinanti = new LinkedList<Country>();
+			confinanti.addAll(Graphs.neighborListOf(graph, c));
+			
+				risultato += c.getStateAbb()+" confina con: "+confinanti.size()+"stati \n";
+			
+			System.out.println(risultato);
+		}
+		return risultato;
+		
 	}
 }
