@@ -35,6 +35,7 @@ public class BordersController {
 
 		txtResult.setText(model.createGraph(Integer.parseInt(txtAnno.getText())));
 		txtResult.setText(model.numeroStatiConfinanti());
+		model.calcolaComponentiConnesse();
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.jgrapht.Graphs;
 import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.ConnectivityInspector;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 
@@ -61,7 +62,7 @@ public class Model {
 	public String numeroStatiConfinanti(){
 		String risultato="";
 		for (Country c : graph.vertexSet()){
-			risultato+=c.getStateAbb()+"\t";
+			//risultato+=c.getStateAbb()+"\t";
 			List<Country> confinanti = new LinkedList<Country>();
 			confinanti.addAll(Graphs.neighborListOf(graph, c));
 			
@@ -72,4 +73,16 @@ public class Model {
 		return risultato;
 		
 	}
+public String calcolaComponentiConnesse(){
+		
+		String ris = "";
+		
+		ConnectivityInspector<Country,Border> ci = new ConnectivityInspector<Country,Border>(graph);
+		
+		int numComponentiConnesse = ci.connectedSets().size();
+		
+		ris += "Numero componenti connesse nel grafo: " + numComponentiConnesse+"\t"+ci.connectedSets().toString();
+		System.out.println(ris);
+		return ris;
+}
 }
